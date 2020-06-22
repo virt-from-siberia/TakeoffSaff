@@ -1,0 +1,6 @@
+{
+    "post": 5000,
+    "mongoURL": "mongodb+srv://Aleksey:SamsungS8@cluster0-7uuld.azure.mongodb.net/employee?retryWrites=true&w=majority",
+    "jwtSecret": "Employee",
+    "rendomJWT": "ASDQE342ESDRSD"
+}

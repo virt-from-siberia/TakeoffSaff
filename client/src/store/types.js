@@ -1,0 +1,14 @@
+//loading
+export const AUTH_SET_LOADING = "AUTH_SET_LOADING";
+//login registartion
+export const AUTH_LOGIN_SUCCESS = "AUTH_LOGIN_SUCCESS";
+export const AUTH_LOGIN_FAIL = "AUTH_LOGIN_FAIL";
+export const AUTH_REGISTER_SUCCESS = "AUTH_REGISTER_SUCCESS";
+export const AUTH_REGISTER_FAIL = "AUTH_REGISTER_FAIL";
+//notifier
+export const SET_NOTIFIER = "SET_NOTIFIER";
+//user
+export const USER_SET_LOADING = "USER_SET_LOADING";
+export const USER_FETCHED_GET_INFO = "USER_FETCHED_GET_INFO";
+export const USER_GET_INFO_FAIL = "USER_FETCHED_GET_INFO_FAIL";
+export const USER_GET_INFO_SUCCESS = "USER_GET_INFO_SUCCESS";

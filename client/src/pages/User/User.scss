@@ -1,0 +1,42 @@
+.user {
+    width: 100wh;
+    height: 100vh;
+    overflow: hidden;
+
+    .centralPanel {
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+
+    .display {
+        height: 100%;
+        width: 100%;
+
+        .frame {
+            display: flex;
+            height: 100%;
+
+            &__sidebar {
+                min-width: 400px;
+                height: 100%;
+
+                .sidebar__content {
+                    height: 100%;
+                    padding: 10px;
+                    overflow: scroll;
+                }
+            }
+
+            &__body {
+                width: 100%;
+
+                &-map {
+                    height: 100%;
+                    width: 100%;
+                    background: url("../../img/map.jpg");
+                }
+            }
+        }
+    }
+}
