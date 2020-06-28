@@ -1,13 +1,12 @@
-//external
+//
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-
-//other
+//
 import { withFormik, Form, Field } from "formik";
 import * as yup from "yup";
 
-//material
+//
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
@@ -149,7 +148,10 @@ const FormikApp = withFormik({
     }),
 
     handleSubmit(values, { props }) {
-        props.actionUserLogin(values.email, values.password);
+        props.actionUserLogin(
+            values.email.toLowerCase(),
+            values.password.toLowerCase()
+        );
     },
 })(Login);
 

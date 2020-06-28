@@ -3,6 +3,7 @@ import {
     AUTH_LOGIN_FAIL,
     AUTH_SET_LOADING,
     SET_NOTIFIER,
+    CLEAR_STATE,
 } from "../types";
 
 const defaultState = {
@@ -25,7 +26,6 @@ export const loginReducer = (state = defaultState, action) => {
                 token: payload.token,
                 userId: payload.userId,
                 isLoading: false,
-                // isLoading: payload, ??? ЧТО ПРИХОДИТ ?
             };
         case AUTH_LOGIN_FAIL:
             return {
@@ -41,6 +41,11 @@ export const loginReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 showNotify: payload,
+            };
+        case CLEAR_STATE:
+            return {
+                token: false,
+                userId: "",
             };
 
         default:

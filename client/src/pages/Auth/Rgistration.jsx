@@ -31,32 +31,9 @@ const Rgistration = ({
         if (successRegistration) {
             setTimeout(() => {
                 history.push("/login");
-            }, 3500);
+            }, 1500);
         }
     }, [history, successRegistration]);
-
-    useEffect(() => {
-        if (errorRegistrationMessage) {
-            console.log(
-                " -> errorRegistrationMessage ",
-                errorRegistrationMessage
-            );
-        }
-    }, [errorRegistrationMessage]);
-
-    const SuccessRegistartion = () => {
-        return (
-            <div className='block-sucess'>
-                <div className='block-sucess-body'>
-                    <p>
-                        На ваш Email <br />
-                        <span> {values.email && values.email}</span> <br />
-                        было отправлено письмо со ссылкой активации
-                    </p>
-                </div>
-            </div>
-        );
-    };
 
     const phoneNumberMask = [
         /\d/,
@@ -79,173 +56,196 @@ const Rgistration = ({
     return (
         <div className='auth'>
             <div className='auth__block'>
-                {successRegistration ? (
-                    <SuccessRegistartion />
-                ) : (
-                    <div className='auth__block__content'>
-                        <div className='registartion'>
-                            <h2>Регистрация пользователя</h2>
-                            {showNotify && showNotify === "success" ? (
-                                <Alert variant='filled' severity='success'>
-                                    Регистрация успешно
-                                </Alert>
-                            ) : null}
-                            {showNotify && showNotify === "fail" ? (
-                                <Alert variant='filled' severity='error'>
-                                    {errorRegistrationMessage &&
-                                        errorRegistrationMessage}
-                                </Alert>
-                            ) : null}
+                <div className='auth__block__content'>
+                    <div className='registartion'>
+                        <h2>Регистрация пользователя</h2>
+                        {showNotify && showNotify === "success" ? (
+                            <Alert variant='filled' severity='success'>
+                                Регистрация успешно
+                            </Alert>
+                        ) : null}
+                        {showNotify && showNotify === "fail" ? (
+                            <Alert variant='filled' severity='error'>
+                                {errorRegistrationMessage &&
+                                    errorRegistrationMessage}
+                            </Alert>
+                        ) : null}
 
-                            <Form className='registartion__forms'>
-                                <div>
-                                    <div className='error'>
-                                        {touched.email && errors.email && (
-                                            <p>{errors.email}</p>
-                                        )}
-                                    </div>
-
-                                    <Field
-                                        type='email'
-                                        name='email'
-                                        autoComplete='off'
-                                        placeholder='Email'
-                                        spellCheck='false'
-                                        value={values.email.trim()}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                                <div>
-                                    <div className='error'>
-                                        {touched.phone && errors.phone && (
-                                            <p>{errors.phone}</p>
-                                        )}
-                                    </div>
-
-                                    <Field
-                                        name='phone'
-                                        autoComplete='off'
-                                        values={values.phone}
-                                        render={() => (
-                                            <MaskedInput
-                                                keepCharPositions={false}
-                                                mask={phoneNumberMask}
-                                                values={values.phone.trim()}
-                                                placeholder='Телефон'
-                                                type='text'
-                                                name='phone'
-                                                onChange={handleChange}
-                                                autoComplete='off'
-                                                guide={false}
-                                            />
-                                        )}
-                                    />
+                        <Form className='registartion__forms'>
+                            <div>
+                                <div className='error'>
+                                    {touched.fullname && errors.fullname && (
+                                        <p>{errors.fullname}</p>
+                                    )}
                                 </div>
 
-                                <div>
-                                    <div className='error'>
-                                        {touched.password &&
-                                            errors.password && (
-                                                <p>{errors.password}</p>
-                                            )}
-                                    </div>
-                                    <div>
-                                        <Field
-                                            type={
-                                                (showPassword && "text") ||
-                                                "password"
-                                            }
-                                            name='password'
-                                            autoComplete='off'
-                                            placeholder='Пароль'
-                                            spellCheck='false'
-                                            value={values.password.trim()}
-                                        />
-
-                                        <div
-                                            className='show-password'
-                                            onMouseEnter={() =>
-                                                setShowPassword(true)
-                                            }
-                                            onMouseLeave={() =>
-                                                setShowPassword(false)
-                                            }
-                                        >
-                                            {(!showPassword && (
-                                                <VisibilityOffIcon />
-                                            )) || <VisibilityIcon />}
-                                        </div>
-                                    </div>
+                                <Field
+                                    type='text'
+                                    name='fullname'
+                                    autoComplete='off'
+                                    placeholder='Имя'
+                                    spellCheck='false'
+                                    value={values.fullname}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                                <div className='error'>
+                                    {touched.email && errors.email && (
+                                        <p>{errors.email}</p>
+                                    )}
                                 </div>
-                                <div>
-                                    <div className='error'>
-                                        {touched.passwordConfirmation &&
-                                            errors.passwordConfirmation && (
-                                                <p>Пароли не совпадают</p>
-                                            )}
-                                    </div>
-                                    <div>
-                                        <Field
-                                            type={
-                                                (showPassword && "text") ||
-                                                "password"
-                                            }
-                                            name='passwordConfirmation'
-                                            autoComplete='off'
-                                            placeholder='Подтверждение пароля'
-                                            spellCheck='false'
+
+                                <Field
+                                    type='email'
+                                    name='email'
+                                    autoComplete='off'
+                                    placeholder='Email'
+                                    spellCheck='false'
+                                    value={values.email.trim()}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                                <div className='error'>
+                                    {touched.phone && errors.phone && (
+                                        <p>{errors.phone}</p>
+                                    )}
+                                </div>
+
+                                <Field
+                                    name='phone'
+                                    autoComplete='off'
+                                    values={values.phone}
+                                    render={() => (
+                                        <MaskedInput
+                                            keepCharPositions={false}
+                                            mask={phoneNumberMask}
+                                            values={values.phone.trim()}
+                                            placeholder='Телефон'
+                                            type='text'
+                                            name='phone'
                                             onChange={handleChange}
-                                            value={values.passwordConfirmation.trim()}
+                                            autoComplete='off'
+                                            guide={false}
                                         />
-                                        <div
-                                            className='show-password'
-                                            onMouseEnter={() =>
-                                                setShowPassword(true)
-                                            }
-                                            onMouseLeave={() =>
-                                                setShowPassword(false)
-                                            }
-                                        >
-                                            {(!showPassword && (
-                                                <VisibilityOffIcon />
-                                            )) || <VisibilityIcon />}
-                                        </div>
+                                    )}
+                                />
+                            </div>
+
+                            <div>
+                                <div className='error'>
+                                    {touched.password && errors.password && (
+                                        <p>{errors.password}</p>
+                                    )}
+                                </div>
+                                <div>
+                                    <Field
+                                        type={
+                                            (showPassword && "text") ||
+                                            "password"
+                                        }
+                                        name='password'
+                                        autoComplete='off'
+                                        placeholder='Пароль'
+                                        spellCheck='false'
+                                        value={values.password.trim()}
+                                    />
+
+                                    <div
+                                        className='show-password'
+                                        onMouseEnter={() =>
+                                            setShowPassword(true)
+                                        }
+                                        onMouseLeave={() =>
+                                            setShowPassword(false)
+                                        }
+                                    >
+                                        {(!showPassword && (
+                                            <VisibilityOffIcon />
+                                        )) || <VisibilityIcon />}
                                     </div>
                                 </div>
-                                {isLoading ? (
-                                    <div className='spinner '>
-                                        <CircularProgress />
+                            </div>
+                            <div>
+                                <div className='error'>
+                                    {touched.passwordConfirmation &&
+                                        errors.passwordConfirmation && (
+                                            <p>Пароли не совпадают</p>
+                                        )}
+                                </div>
+                                <div>
+                                    <Field
+                                        type={
+                                            (showPassword && "text") ||
+                                            "password"
+                                        }
+                                        name='passwordConfirmation'
+                                        autoComplete='off'
+                                        placeholder='Подтверждение пароля'
+                                        spellCheck='false'
+                                        onChange={handleChange}
+                                        value={values.passwordConfirmation.trim()}
+                                    />
+                                    <div
+                                        className='show-password'
+                                        onMouseEnter={() =>
+                                            setShowPassword(true)
+                                        }
+                                        onMouseLeave={() =>
+                                            setShowPassword(false)
+                                        }
+                                    >
+                                        {(!showPassword && (
+                                            <VisibilityOffIcon />
+                                        )) || <VisibilityIcon />}
                                     </div>
-                                ) : null}
-                                <button
-                                    className='btn btn-register'
-                                    disabled={isLoading ? true : false}
-                                >
-                                    Регистрация
-                                </button>
-                            </Form>
-                        </div>
-
-                        <Link className='log-change' to='/login'>
-                            <ExitToAppIcon /> Вход
-                        </Link>
+                                </div>
+                            </div>
+                            {isLoading ? (
+                                <div className='spinner '>
+                                    <CircularProgress />
+                                </div>
+                            ) : null}
+                            <button
+                                className='btn btn-register'
+                                disabled={isLoading ? true : false}
+                            >
+                                Регистрация
+                            </button>
+                        </Form>
                     </div>
-                )}
+
+                    <Link className='log-change' to='/login'>
+                        <ExitToAppIcon /> Вход
+                    </Link>
+                </div>
             </div>
         </div>
     );
 };
 
 const FormikApp = withFormik({
-    mapPropsToValues({ email, password, passwordConfirmation, phone }) {
+    mapPropsToValues({
+        email,
+        password,
+        passwordConfirmation,
+        phone,
+        fullname,
+    }) {
         return {
             email: email || "",
             password: password || "",
             passwordConfirmation: passwordConfirmation || "",
             phone: phone || "",
+            fullname: fullname || "",
         };
     },
     validationSchema: yup.object().shape({
+        fullname: yup
+            .string()
+            .min(2, "Имя не должно быть менее 2 букв")
+            .required("Введите Имя"),
         email: yup
             .string()
             .email("Введите валидный Email")
@@ -267,9 +267,10 @@ const FormikApp = withFormik({
 
     handleSubmit(values, { props }) {
         props.actionUserRegistration(
-            values.email,
-            values.password,
-            values.phone
+            values.email.toLowerCase(),
+            values.password.toLowerCase(),
+            values.phone,
+            values.fullname
         );
     },
 })(Rgistration);

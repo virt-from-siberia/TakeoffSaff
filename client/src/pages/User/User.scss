@@ -1,42 +1,128 @@
 .user {
     width: 100wh;
     height: 100vh;
-    overflow: hidden;
+    overflow-y: scroll;
+    background-image: url("../../img/layout_pattern.png"),
+        linear-gradient(226deg, rgb(13, 55, 102) 48%, rgb(10, 30, 47) 100%);
+    background-attachment: fixed;
+    position: relative;
 
-    .centralPanel {
-        display: flex;
-        width: 100%;
-        height: 100%;
+    .container {
+        height: 100vh;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 25px;
     }
 
-    .display {
-        height: 100%;
-        width: 100%;
+    .contacts {
+        padding-top: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 300px;
 
-        .frame {
-            display: flex;
-            height: 100%;
+        &__item {
+            background: rgba(24, 27, 51, 0.609);
+            opacity: 0.8;
+            padding: 15px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid rgb(24, 28, 54);
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+                0 1px 2px rgba(0, 0, 0, 0.24);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
-            &__sidebar {
-                min-width: 400px;
-                height: 100%;
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18),
+                    0 10px 10px rgba(0, 0, 0, 0.22);
+                background: rgba(34, 39, 73, 0.609);
 
-                .sidebar__content {
-                    height: 100%;
-                    padding: 10px;
-                    overflow: scroll;
+                .contacts__item-body {
+                    .edit {
+                        opacity: 0.5;
+                    }
                 }
             }
 
-            &__body {
-                width: 100%;
+            &-body {
+                display: flex;
+                align-items: center;
+                position: relative;
 
-                &-map {
-                    height: 100%;
-                    width: 100%;
-                    background: url("../../img/map.jpg");
+                .important {
+                    position: absolute;
+                    padding-right: 5px;
+                    svg {
+                        color: yellow;
+                    }
+                }
+
+                .edit {
+                    color: white;
+                    opacity: 0;
+                    position: absolute;
+                    right: 25px;
+                }
+
+                .top {
+                    margin-left: 20px;
+                }
+
+                .middle {
+                }
+
+                .common-info {
+                    display: flex;
+
+                    .name,
+                    .phone,
+                    .email,
+                    .website,
+                    .address {
+                        padding: 0 15px;
+                        max-width: 200px;
+                        display: flex;
+                        align-items: center;
+                        border-right: 2px solid #ffffff41;
+
+                        svg {
+                            color: yellow;
+                            opacity: 0.8;
+                            padding-right: 5px;
+                            font-size: 23px;
+                        }
+                        .red {
+                            color: #ff3434;
+                        }
+                        .green {
+                            color: #16b816;
+                        }
+                        .blue {
+                            color: #4d4dfd;
+                        }
+                        p {
+                            font-size: 15px;
+                            color: white;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                    .name {
+                        max-width: 300px;
+                        svg {
+                            font-size: 35px;
+                            margin-right: 15px;
+                            color: white;
+                        }
+                    }
                 }
             }
         }
     }
 }
+
+// #ffca38

@@ -5,7 +5,8 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import User from "@/pages/User/UserContainer";
 import Rgistration from "@/pages/Auth/RgistrationContainer";
 import Login from "@/pages/Auth/LogInContainer";
-import Home from "@/pages/Home/Home";
+import CreateContact from "@/pages/CreateContact/CreateContactContainer";
+import EditContact from "@/pages/EditContact/EditContactContainer";
 
 //isAuthenticated : boolean.
 export const useRoutes = (isAuthenticated) => {
@@ -16,6 +17,12 @@ export const useRoutes = (isAuthenticated) => {
                 <Route path='/user' exact>
                     <User />
                 </Route>
+                <Route path='/create' exact>
+                    <CreateContact />
+                </Route>
+                <Route path='/edit/:id' exact>
+                    <EditContact />
+                </Route>
                 <Redirect to='/user' />
             </Switch>
         );
@@ -23,14 +30,11 @@ export const useRoutes = (isAuthenticated) => {
     //Если пользователь НЕ зарегестрирован
     return (
         <Switch>
-            <Route path='/registration' exact>
+            <Route path='/' exact>
                 <Rgistration />
             </Route>
             <Route path='/login' exact>
                 <Login />
-            </Route>
-            <Route path='/' exact>
-                <Home />
             </Route>
             <Redirect to='/' />
         </Switch>

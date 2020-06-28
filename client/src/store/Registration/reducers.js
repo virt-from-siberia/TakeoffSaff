@@ -3,11 +3,10 @@ import {
     AUTH_REGISTER_SUCCESS,
     AUTH_REGISTER_FAIL,
     SET_NOTIFIER,
+    CLEAR_STATE,
 } from "../types";
 
 const defaultState = {
-    // token: localStorage.getItem("token"),
-    // isAuthenticated: null,
     successRegistration: false,
     isLoading: false,
     showNotify: false,
@@ -37,6 +36,11 @@ export const registrationReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 showNotify: payload,
+            };
+        case CLEAR_STATE:
+            return {
+                ...state,
+                isLoading: false,
             };
 
         default:

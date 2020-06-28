@@ -3,9 +3,10 @@ import {
     AUTH_LOGIN_FAIL,
     AUTH_SET_LOADING,
     SET_NOTIFIER,
+    CLEAR_STATE,
 } from "../types";
 
-import api from "@/utils/api/api.auth";
+import api from "@/utils/api/api";
 
 const actions = {
     actionSetIsLoading: (bool) => ({
@@ -23,20 +24,23 @@ const actions = {
         try {
             const res = await api.apiUserLogin({ email, password });
 
-            console.log(" -> REQUEST", res.data.params);
+            console.log(" -> REQUEST", res.data);
 
             dispatch(actions.actionShowNotifyer("success"));
 
             dispatch({
                 type: AUTH_LOGIN_SUCCESS,
                 payload: {
-                    userId: res.data.params.userId,
-                    token: res.data.params.token,
+                    userId: res.data.userId,
+                    token: res.data.token,
                 },
             });
 
             setTimeout(() => {
                 dispatch(actions.actionShowNotifyer(false));
+                dispatch({
+                    type: CLEAR_STATE,
+                });
             }, 1500);
         } catch (error) {
             console.log(error.response.data.message);

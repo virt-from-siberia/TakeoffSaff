@@ -1,11 +1,11 @@
 import {
-    USER_FETCHED_GET_INFO,
+    USER_FETCHED_GET_CONTACTS,
     USER_SET_LOADING,
-    USER_GET_INFO_FAIL,
-    USER_GET_INFO_SUCCESS,
+    USER_GET_CONTACTS_FAIL,
+    USER_GET_CONTACTS_SUCCESS,
 } from "../types";
 
-import api from "@/utils/api/api.user";
+import api from "@/utils/api/api";
 
 const actions = {
     actionSetIsLoading: (bool) => ({
@@ -13,17 +13,18 @@ const actions = {
         payload: bool,
     }),
 
-    actionUserGetInfo: () => async (dispatch) => {
+    actionGetUserContacts: () => async (dispatch) => {
+        console.log("-> DISPATCH");
         dispatch(actions.actionSetIsLoading(true));
         dispatch({
-            type: USER_FETCHED_GET_INFO,
+            type: USER_FETCHED_GET_CONTACTS,
         });
 
         try {
-            const res = await api.apiUserGetInfo();
+            const res = await api.apiUserGetContacts();
             console.log(res);
             dispatch({
-                type: USER_GET_INFO_SUCCESS,
+                type: USER_GET_CONTACTS_SUCCESS,
                 payload: res.data,
             });
 
@@ -31,7 +32,7 @@ const actions = {
         } catch (error) {
             dispatch(actions.actionSetIsLoading(false));
             dispatch({
-                type: USER_GET_INFO_FAIL,
+                type: USER_GET_CONTACTS_FAIL,
             });
         }
     },

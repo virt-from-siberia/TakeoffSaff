@@ -1,8 +1,7 @@
-//external
+//
 import React, { useContext } from "react";
 import { connect } from "react-redux";
-
-//internal
+//
 import loginActions from "@/store/Login/actions";
 import Login from "./LogIn";
 import { AuthContext } from "@/context/AuthContext";

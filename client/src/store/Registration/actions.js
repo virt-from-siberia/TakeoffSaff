@@ -3,9 +3,10 @@ import {
     AUTH_REGISTER_SUCCESS,
     AUTH_REGISTER_FAIL,
     SET_NOTIFIER,
+    CLEAR_STATE,
 } from "../types";
 
-import api from "@/utils/api/api.auth";
+import api from "@/utils/api/api";
 
 const actions = {
     actionSetIsLoading: (bool) => ({
@@ -17,7 +18,9 @@ const actions = {
         payload: bool,
     }),
 
-    actionUserRegistration: (email, password, phone) => async (dispatch) => {
+    actionUserRegistration: (email, password, phone, fullname) => async (
+        dispatch
+    ) => {
         dispatch(actions.actionSetIsLoading(true));
         console.log("-> asdasdasd");
 
@@ -26,6 +29,7 @@ const actions = {
                 email,
                 password,
                 phone,
+                fullname,
             });
 
             console.log("RESPONSE");
@@ -38,6 +42,9 @@ const actions = {
                 dispatch({
                     type: AUTH_REGISTER_SUCCESS,
                     payload: res.data,
+                });
+                dispatch({
+                    type: CLEAR_STATE,
                 });
             }, 1500);
         } catch (error) {
@@ -57,4 +64,3 @@ const actions = {
 };
 
 export default actions;
-// err.response;

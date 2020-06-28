@@ -1,0 +1,143 @@
+.createContact {
+    background-image: url("../../img/layout_pattern.png"),
+        linear-gradient(226deg, rgb(13, 55, 102) 48%, rgb(10, 30, 47) 100%);
+    background-attachment: fixed;
+
+    @media screen and (max-width: 760px) {
+        background: red;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .container {
+        width: 1000px;
+        margin: 0 auto;
+        padding: 0 25px;
+    }
+
+    &__body {
+        padding-top: 70px;
+        height: 100vh;
+        width: 100%;
+
+        h1 {
+            margin-top: 50px;
+            color: white;
+            font-size: 25px;
+            opacity: 0.7;
+        }
+
+        &-inputs {
+            background: rgba(24, 27, 51, 0.609);
+            border: 1px solid rgb(62, 73, 172);
+            margin-top: 50px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18),
+                0 10px 10px rgba(0, 0, 0, 0.22);
+            background: rgba(34, 39, 73, 0.609);
+
+            .input-create {
+                margin-top: 50px;
+                margin: 10px;
+                border-radius: 5px;
+
+                label {
+                    color: rgb(121, 121, 121);
+                    opacity: 1;
+                    font-size: 14px;
+                }
+                .MuiInputBase-root {
+                    border: 1px solid rgba(62, 73, 172, 0.692);
+                    input {
+                        width: 500px;
+                        color: white;
+                    }
+                }
+            }
+
+            .set-attributes {
+                display: flex;
+                margin-bottom: 25px;
+                margin-left: 25px;
+
+                .important-contact {
+                    display: flex;
+                    align-items: center;
+                    margin-left: 10px;
+
+                    svg {
+                        color: yellow;
+                        font-size: 40px;
+                        cursor: pointer;
+                    }
+
+                    p {
+                        color: white;
+                        margin-left: 15px;
+                    }
+                }
+
+                .set-color {
+                    display: flex;
+                    align-items: center;
+                    margin-left: 50px;
+
+                    svg {
+                        color: white;
+                        opacity: 0.5;
+                        font-size: 40px;
+                    }
+
+                    &-handler {
+                        margin-left: 25px;
+
+                        svg {
+                            padding: 0 5px;
+                            cursor: pointer;
+                        }
+
+                        .red {
+                            color: #ff3434;
+                        }
+                        .green {
+                            color: #16b816;
+                        }
+                        .blue {
+                            color: #4d4dfd;
+                        }
+                    }
+                }
+            }
+        }
+
+        button {
+            margin-top: 25px;
+            font-weight: 400;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 35px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1),
+                0 3px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            width: 200px;
+            transition: 0.3s;
+            background-color: #2e8653;
+            font-weight: bold;
+            &:hover {
+                background-color: #2e8653;
+                box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1),
+                    0 3px 3px rgba(0, 0, 0, 0.1);
+            }
+        }
+        .btn-delete {
+            background-color: #dd4328;
+        }
+    }
+}

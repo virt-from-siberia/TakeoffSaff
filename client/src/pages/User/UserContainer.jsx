@@ -1,77 +1,74 @@
-//external
-import React from "react";
+//
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-//internal
-import actionUserGetInfo from "@/store/User/actions";
+//
+import actionUserContacts from "@/store/User/actions";
 import User from "./User";
-//selectors
-import {
-    getUserInfo,
-    getUsererror,
-    getUserSuccessUserGetInfo,
-    getUserIsLoading,
-} from "@/store/User/selectors";
 
 export const UserContainer = ({
     isLoading,
-    successUserGetInfo,
     error,
-    actionUserGetInfo,
-    userInfo,
+    actionGetUserContacts,
+    contacts,
 }) => {
-    // const auth = useContext(AuthContext);
+    const [inputValue, setValue] = useState("");
+
+    const [filtered, setFiltredItems] = useState(Array.from(contacts));
+
+    const onSearchHandler = (value) => {
+        setFiltredItems(
+            contacts.filter(
+                (contact) =>
+                    contact.name.toLowerCase().indexOf(value.toLowerCase()) >= 0
+            )
+        );
+        setValue(value);
+    };
+
+    const takeGroupHandler = (valueGroup) => {
+        if (valueGroup) {
+            setFiltredItems(contacts.filter((contact) => contact[valueGroup]));
+        } else {
+            setFiltredItems(contacts);
+        }
+    };
+
+    useEffect(() => {
+        if (contacts.length) {
+            setFiltredItems(contacts);
+        }
+    }, [setFiltredItems, contacts]);
 
     return (
         <User
             isLoading={isLoading}
-            successUserGetInfo={successUserGetInfo}
+            actionGetUserContacts={actionGetUserContacts}
             error={error}
-            userInfo={userInfo}
-            actionUserGetInfo={actionUserGetInfo}
+            contacts={filtered}
+            onSearchHandler={onSearchHandler}
+            inputValue={inputValue}
+            takeGroupHandler={takeGroupHandler}
         />
     );
 };
 
-// const mapStateToProps = (state) => {
-//     return {
-//         isLoading: state.user.isLoading,
-//         successUserGetInfo: state.user.successUserGetInfo,
-//         error: state.user.error,
-//         userEmail: state.user.userEmail,
-//         userName: state.user.userName,
-//         userSecondName: state.user.userSecondName,
-//         userLanguage: state.user.userLanguage,
-//         userPhone: state.user.userPhone,
-//     };
-// };
-
 const mapStateToProps = (state) => {
     return {
-        isLoading: getUserIsLoading(state),
-        successUserGetInfo: getUserSuccessUserGetInfo(state),
-        error: getUsererror(state),
-        userInfo: getUserInfo(state),
+        isLoading: state.user.isLoading,
+        error: state.user.error,
+        contacts: state.user.contacts,
     };
 };
 
 const mapDispatchToProps = {
-    ...actionUserGetInfo,
+    ...actionUserContacts,
 };
 
 UserContainer.propTypes = {
     isLoading: PropTypes.bool.isRequired,
-    successUserGetInfo: PropTypes.bool.isRequired,
     error: PropTypes.any.isRequired,
-    actionUserGetInfo: PropTypes.func.isRequired,
-
-    userInfo: PropTypes.shape({
-        userEmail: PropTypes.string.isRequired,
-        userName: PropTypes.string.isRequired,
-        userSecondName: PropTypes.string.isRequired,
-        userLanguage: PropTypes.string.isRequired,
-        userPhone: PropTypes.string.isRequired,
-    }).isRequired,
+    contacts: PropTypes.array.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);
