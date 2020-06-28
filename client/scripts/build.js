@@ -67,23 +67,23 @@ checkBrowsers(paths.appPath, isInteractive)
   .then(
     ({ stats, previousFileSizes, warnings }) => {
       if (warnings.length) {
-        console.log(chalk.yellow('Compiled with warnings.\n'));
-        console.log(warnings.join('\n\n'));
-        console.log(
+        //console.log(chalk.yellow('Compiled with warnings.\n'));
+        //console.log(warnings.join('\n\n'));
+        //console.log(
           '\nSearch for the ' +
             chalk.underline(chalk.yellow('keywords')) +
             ' to learn more about each warning.'
         );
-        console.log(
+        //console.log(
           'To ignore, add ' +
             chalk.cyan('// eslint-disable-next-line') +
             ' to the line before.\n'
         );
       } else {
-        console.log(chalk.green('Compiled successfully.\n'));
+        //console.log(chalk.green('Compiled successfully.\n'));
       }
 
-      console.log('File sizes after gzip:\n');
+      //console.log('File sizes after gzip:\n');
       printFileSizesAfterBuild(
         stats,
         previousFileSizes,
@@ -91,7 +91,7 @@ checkBrowsers(paths.appPath, isInteractive)
         WARN_AFTER_BUNDLE_GZIP_SIZE,
         WARN_AFTER_CHUNK_GZIP_SIZE
       );
-      console.log();
+      //console.log();
 
       const appPackage = require(paths.appPackageJson);
       const publicUrl = paths.publicUrlOrPath;
@@ -108,14 +108,14 @@ checkBrowsers(paths.appPath, isInteractive)
     err => {
       const tscCompileOnError = process.env.TSC_COMPILE_ON_ERROR === 'true';
       if (tscCompileOnError) {
-        console.log(
+        //console.log(
           chalk.yellow(
             'Compiled with the following type errors (you may want to check these before deploying your app):\n'
           )
         );
         printBuildError(err);
       } else {
-        console.log(chalk.red('Failed to compile.\n'));
+        //console.log(chalk.red('Failed to compile.\n'));
         printBuildError(err);
         process.exit(1);
       }
@@ -123,7 +123,7 @@ checkBrowsers(paths.appPath, isInteractive)
   )
   .catch(err => {
     if (err && err.message) {
-      console.log(err.message);
+      //console.log(err.message);
     }
     process.exit(1);
   });
@@ -134,15 +134,15 @@ function build(previousFileSizes) {
   // This now has been deprecated in favor of jsconfig/tsconfig.json
   // This lets you use absolute paths in imports inside large monorepos:
   if (process.env.NODE_PATH) {
-    console.log(
+    //console.log(
       chalk.yellow(
         'Setting NODE_PATH to resolve modules absolutely has been deprecated in favor of setting baseUrl in jsconfig.json (or tsconfig.json if you are using TypeScript) and will be removed in a future major release of create-react-app.'
       )
     );
-    console.log();
+    //console.log();
   }
 
-  console.log('Creating an optimized production build...');
+  //console.log('Creating an optimized production build...');
 
   const compiler = webpack(config);
   return new Promise((resolve, reject) => {
@@ -185,7 +185,7 @@ function build(previousFileSizes) {
           process.env.CI.toLowerCase() !== 'false') &&
         messages.warnings.length
       ) {
-        console.log(
+        //console.log(
           chalk.yellow(
             '\nTreating warnings as errors because process.env.CI = true.\n' +
               'Most CI servers set it automatically.\n'

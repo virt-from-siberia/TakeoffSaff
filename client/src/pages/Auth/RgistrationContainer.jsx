@@ -7,40 +7,40 @@ import registrationActions from "@/store/Registration/actions";
 import Registration from "./Rgistration";
 
 const RgistrationContainer = ({
-    isLoading,
-    actionUserRegistration,
-    successRegistration,
-    showNotify,
-    errorRegistrationMessage,
+  isLoading,
+  actionUserRegistration,
+  successRegistration,
+  showNotify,
+  errorRegistrationMessage,
 }) => {
-    console.log(" -> errorRegistrationMessage ", errorRegistrationMessage);
-    const history = useHistory();
-    return (
-        <Registration
-            isLoading={isLoading}
-            successRegistration={successRegistration}
-            actionUserRegistration={actionUserRegistration}
-            showNotify={showNotify}
-            history={history}
-            errorRegistrationMessage={errorRegistrationMessage}
-        />
-    );
+  //console.log(" -> errorRegistrationMessage ", errorRegistrationMessage);
+  const history = useHistory();
+  return (
+    <Registration
+      isLoading={isLoading}
+      successRegistration={successRegistration}
+      actionUserRegistration={actionUserRegistration}
+      showNotify={showNotify}
+      history={history}
+      errorRegistrationMessage={errorRegistrationMessage}
+    />
+  );
 };
 
 const mapStateToProps = (state) => {
-    return {
-        successRegistration: state.registration.successRegistration,
-        isLoading: state.registration.isLoading,
-        showNotify: state.registration.showNotify,
-        errorRegistrationMessage: state.registration.errorRegistrationMessage,
-    };
+  return {
+    successRegistration: state.registration.successRegistration,
+    isLoading: state.registration.isLoading,
+    showNotify: state.registration.showNotify,
+    errorRegistrationMessage: state.registration.errorRegistrationMessage,
+  };
 };
 
 const mapDispatchToProps = {
-    ...registrationActions,
+  ...registrationActions,
 };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(RgistrationContainer);
